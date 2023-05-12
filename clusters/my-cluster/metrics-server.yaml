@@ -16,11 +16,11 @@ metadata:
 spec:
   chart:
     spec:
-    chart: metrics-server
-    reconcileStrategy: ChartVersion
-    sourceRef:
-    kind: HelmRepository
-    name: metrics-server
+      chart: metrics-server
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: metrics-server
   interval: 1m0s
   values:
     args: [--kubelet-insecure-tls]

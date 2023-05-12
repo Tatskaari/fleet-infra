@@ -17,9 +17,9 @@ spec:
   interval: 5m
   chart:
     spec:
-    chart: base
-    sourceRef:
-    kind: HelmRepository
-    name: istio
-    namespace: istio-system
-    interval: 1m
+      chart: base
+      sourceRef:
+        kind: HelmRepository
+        name: istio
+        namespace: istio-system
+      interval: 1m
