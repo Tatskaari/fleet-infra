@@ -20,12 +20,15 @@ metadata:
   namespace: vcluster
 spec:
   controlPlaneEndpoint:
-    host: "kind.vcluster.svc"
+    host: "vcluster.vcluster.svc"
     port: 443
   helmRelease:
     values: |-
       service:
         type: NodePort
+      syncer:
+        extraArgs:
+        - --tls-san=vcluster.vcluster.svc
   kubernetesVersion: 1.23.4
 ---
 apiVersion: source.toolkit.fluxcd.io/v1
