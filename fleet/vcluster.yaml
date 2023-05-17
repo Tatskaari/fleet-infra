@@ -37,7 +37,7 @@ spec:
   interval: 1m0s
   ref:
     branch: main
-  url: ssh://git@github.com/tatskaari/fleet-infra
+  url: https://github.com/tatskaari/fleet-infra
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
