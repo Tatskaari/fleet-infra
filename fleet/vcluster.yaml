@@ -23,10 +23,6 @@ spec:
     host: ""
     port: 0
   helmRelease:
-    chart:
-      name: null
-      repo: null
-      version: null
     values: |-
       service:
         type: NodePort
