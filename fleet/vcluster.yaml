@@ -1,7 +1,7 @@
 apiVersion: cluster.x-k8s.io/v1beta1
 kind: Cluster
 metadata:
-  name: vcluster
+  name: kind
   namespace: vcluster
 spec:
   controlPlaneRef:
@@ -16,11 +16,11 @@ spec:
 apiVersion: infrastructure.cluster.x-k8s.io/v1alpha1
 kind: VCluster
 metadata:
-  name: vcluster
+  name: kind
   namespace: vcluster
 spec:
   controlPlaneEndpoint:
-    host: "vcluster.vcluster.svc"
+    host: "kind.vcluster.svc"
     port: 443
   helmRelease:
     values: |-
@@ -28,7 +28,7 @@ spec:
         type: NodePort
       syncer:
         extraArgs:
-        - --tls-san=vcluster.vcluster.svc
+        - --tls-san=kind.vcluster.svc
   kubernetesVersion: 1.23.4
 ---
 apiVersion: source.toolkit.fluxcd.io/v1
@@ -53,7 +53,7 @@ spec:
   prune: true
   kubeConfig:
     secretRef:
-      name: vcluster-kubeconfig
+      name: kind-kubeconfig
   sourceRef:
     kind: GitRepository
     name: flux-system
@@ -69,7 +69,7 @@ spec:
   prune: true
   kubeConfig:
     secretRef:
-      name: vcluster-kubeconfig
+      name: kind-kubeconfig
   sourceRef:
     kind: GitRepository
     name: flux-system
