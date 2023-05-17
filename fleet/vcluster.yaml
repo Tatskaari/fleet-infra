@@ -27,3 +27,46 @@ spec:
       service:
         type: NodePort
   kubernetesVersion: 1.23.4
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: flux-system
+  namespace: vcluster
+spec:
+  interval: 1m0s
+  ref:
+    branch: main
+  url: ssh://git@github.com/tatskaari/fleet-infra
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: flux-system
+  namespace: vcluster
+spec:
+  interval: 1m0s
+  path: ./workload/flux-system
+  prune: true
+  kubeConfig:
+    secretRef:
+      name: kind-kubeconfig
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: vcluster
+  namespace: vcluster
+spec:
+  interval: 1m0s
+  path: ./vcluster
+  prune: true
+  kubeConfig:
+    secretRef:
+      name: kind-kubeconfig
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
