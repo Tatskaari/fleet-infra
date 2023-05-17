@@ -1,7 +1,7 @@
 apiVersion: cluster.x-k8s.io/v1beta1
 kind: Cluster
 metadata:
-  name: kind
+  name: vcluster
   namespace: vcluster
 spec:
   controlPlaneRef:
@@ -16,7 +16,7 @@ spec:
 apiVersion: infrastructure.cluster.x-k8s.io/v1alpha1
 kind: VCluster
 metadata:
-  name: kind
+  name: vcluster
   namespace: vcluster
 spec:
   controlPlaneEndpoint:
@@ -50,7 +50,7 @@ spec:
   prune: true
   kubeConfig:
     secretRef:
-      name: kind-kubeconfig
+      name: vcluster-kubeconfig
   sourceRef:
     kind: GitRepository
     name: flux-system
@@ -66,7 +66,7 @@ spec:
   prune: true
   kubeConfig:
     secretRef:
-      name: kind-kubeconfig
+      name: vcluster-kubeconfig
   sourceRef:
     kind: GitRepository
     name: flux-system
