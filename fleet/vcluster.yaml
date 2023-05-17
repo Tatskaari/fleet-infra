@@ -20,8 +20,8 @@ metadata:
   namespace: vcluster
 spec:
   controlPlaneEndpoint:
-    host: ""
-    port: 0
+    host: "kind.vcluster.svc"
+    port: 443
   helmRelease:
     values: |-
       service:
